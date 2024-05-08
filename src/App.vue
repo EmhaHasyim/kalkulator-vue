@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { PhBackspace } from '@phosphor-icons/vue';
+import * as math from 'mathjs';
 
 const arrayInput = ref<string[]>([])
 
-const inputToArray: Function = (value: string) => {
+const inputToArray = (value: string): void => {
   arrayInput.value.push(value)
 }
 
-const jumlahKan: Function = () => {
+const jumlahKan = (): void => {
   const arrayString: string = arrayInput.value.join('')
-  const result = new Function('return ' + arrayString)();
-  const resultString: string = result.toString()
-  arrayInput.value = resultString.split('')
+  const result: number = math.evaluate(arrayString)
+  arrayInput.value = result.toString().split('')
 }
 
-const hapusAngka: Function = () => {
+const hapusAngka = (): void => {
   arrayInput.value.pop()
 }
 
