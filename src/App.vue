@@ -19,12 +19,10 @@ const hapusAngka: Function = () => {
   arrayInput.value.pop()
 }
 
-const test = 1 % 2
-
 </script>
 
 <template>
-  <section class="mx-auto h-14 text-center mt-10 text-4xl flex items-center justify-center">
+  <section class="mx-auto h-14 text-center mt-10 text-4xl flex items-center justify-center gap-0.5">
     {{ arrayInput.join('').replace('.',',').replace('*',' x ').replace('/ 100',' % ') }}
   </section>
   <section class="grid grid-cols-4 gap-1 h-96 w-80 mx-auto mt-2">
