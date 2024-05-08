@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { PhBackspace } from '@phosphor-icons/vue';
 
-const arrayInput = ref<Array<string>>([])
+const arrayInput = ref<string[]>([])
 
 const inputToArray: Function = (value: string) => {
   arrayInput.value.push(value)
@@ -10,9 +10,9 @@ const inputToArray: Function = (value: string) => {
 
 const jumlahKan: Function = () => {
   const arrayString: string = arrayInput.value.join('')
-  const hasilPenjumlahan = eval(arrayString)
-  arrayInput.value = []
-  arrayInput.value.push(hasilPenjumlahan)
+  const result = new Function('return ' + arrayString)();
+  const resultString: string = result.toString()
+  arrayInput.value = resultString.split('')
 }
 
 const hapusAngka: Function = () => {
@@ -23,7 +23,7 @@ const hapusAngka: Function = () => {
 
 <template>
   <section class="mx-auto h-14 text-center mt-10 text-4xl flex items-center justify-center gap-0.5">
-    {{ arrayInput.join('').replace('.',',').replace('*',' x ').replace('/ 100',' % ') }}
+    {{ arrayInput.join('').replace('.', ',').replace('*', ' x ').replace('/ 100', ' % ') }}
   </section>
   <section class="grid grid-cols-4 gap-1 h-96 w-80 mx-auto mt-2">
     <button class="bg-sky-800 rounded text-3xl" @click.prevent="inputToArray('( ')">
